@@ -8,7 +8,9 @@ import Part2.Types
 -- Написать функцию, которая преобразует значение типа
 -- ColorLetter в символ, равный первой букве значения
 prob6 :: ColorLetter -> Char
-prob6 = error "Implement me!"
+prob6 RED = 'R'
+prob6 GREEN = 'G'
+prob6 BLUE = 'B'
 
 ------------------------------------------------------------
 -- PROBLEM #7
@@ -16,23 +18,40 @@ prob6 = error "Implement me!"
 -- Написать функцию, которая проверяет, что значения
 -- находятся в диапазоне от 0 до 255 (границы входят)
 prob7 :: ColorPart -> Bool
-prob7 = error "Implement me!"
+prob7 color = 0 <= prob9 color && 255 >= prob9 color
 
+{-
+component :: ColorPart -> Int
+component (Red x) = x
+component (Green x) = x
+component (Blue x) = x
+-}
 ------------------------------------------------------------
 -- PROBLEM #8
 --
 -- Написать функцию, которая добавляет в соответствующее
 -- поле значения Color значение из ColorPart
 prob8 :: Color -> ColorPart -> Color
-prob8 = error "Implement me!"
+prob8 color cp = Color {
+  red = red color + component2 cp RED,
+  green = green color + component2 cp GREEN,
+  blue = blue color + component2 cp BLUE
+}
 
+component2 :: ColorPart -> ColorLetter -> Int
+component2 (Red n) RED = n
+component2 (Green n) GREEN = n
+component2 (Blue n) BLUE = n
+component2 _ _ = 0
 ------------------------------------------------------------
 -- PROBLEM #9
 --
 -- Написать функцию, которая возвращает значение из
 -- ColorPart
 prob9 :: ColorPart -> Int
-prob9 = error "Implement me!"
+prob9 (Red x) = x
+prob9 (Green x) = x
+prob9 (Blue x) = x
 
 ------------------------------------------------------------
 -- PROBLEM #10
