@@ -96,4 +96,4 @@ prob5 n k = all (< k) (filter prime $ getdivs n)
     prime n = getdivs n == [1, n]
 
     getdivs :: Integer -> [Integer]
-    getdivs x = filter ((== 0) . (mod x)) [1..x]
+    getdivs x = filter ((== 0) . (mod x)) [1..x `div` 2] ++ [x]
