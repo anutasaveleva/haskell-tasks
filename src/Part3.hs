@@ -6,7 +6,7 @@ module Part3 where
 -- Проверить, является ли число N простым (1 <= N <= 10^9)
 prob18 :: Integer -> Bool
 prob18 1 = False
-prob18 n = all check [2..n `div` 2]
+prob18 n = all check [2..ceiling . sqrt $ fromIntegral n]
   where
     check x = n `mod` x /= 0
 
@@ -26,7 +26,8 @@ prob19 = error "Implement me!"
 -- Совершенное число равно сумме своих делителей (меньших
 -- самого числа)
 prob20 :: Integer -> Bool
-prob20 n = sum (filter ((== 0) . (mod n)) [1..(n-1)]) == n
+prob20 1 = False
+prob20 n = sum (filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n]) == n
 
 ------------------------------------------------------------
 -- PROBLEM #21
@@ -34,7 +35,8 @@ prob20 n = sum (filter ((== 0) . (mod n)) [1..(n-1)]) == n
 -- Вернуть список всех делителей числа N (1<=N<=10^10) в
 -- порядке возрастания
 prob21 :: Integer -> [Integer]
-prob21 n = filter ((== 0) . (mod n)) [1..n]
+prob21 1 = [1]
+prob21 n = filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n] ++ [n]
 
 ------------------------------------------------------------
 -- PROBLEM #22
