@@ -76,7 +76,7 @@ prob4 0 = 1
 prob4 1 = 1
 prob4 (-1) = 0
 prob4 n
-    | n < 0 = prob4(n + 1) + prob4(n + 2) 
+    | n < 0 = prob4(-n - 2) * ((-1)^((-1)* n))  
     | otherwise = prob4(n - 1) + prob4(n - 2)
 
 
@@ -89,4 +89,11 @@ prob4 n
 -- Числа n и k положительны и не превосходят 10^8.
 -- Число 1 не считается простым числом
 prob5 :: Integer -> Integer -> Bool
-prob5 = error "Implement me!"
+prob5 1 k = False
+prob5 n k = all (< k) (filter prime $ getdivs n)
+  where
+    prime :: Integer -> Bool
+    prime n = getdivs n == [1, n]
+
+    getdivs :: Integer -> [Integer]
+    getdivs x = filter ((== 0) . (mod x)) [1..x]
