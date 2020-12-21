@@ -76,8 +76,8 @@ prob4 0 = 1
 prob4 1 = 1
 prob4 (-1) = 0
 prob4 n
-    | n < 0 = prob4(-n - 2) * ((-1)^((-1)* n))  
-    | otherwise = prob4(n - 1) + prob4(n - 2)
+    | n > 0 = prob4(n - 1) + prob4(n - 2)  
+    | otherwise = prob4((-1) * n - 2) * (if even n then 1 else -1)
 
 
 ------------------------------------------------------------
