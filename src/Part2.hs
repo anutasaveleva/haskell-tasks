@@ -61,12 +61,21 @@ prob9 (Blue x) = x
 prob10 :: Color -> Maybe ColorPart
 prob10 = error "Implement me!"
 
+{- c = if length mcount == 1 then Just m else Nothing
+    where
+        parts = [Red (red c), Green (green c), Blue (blue c)]
+        vals = map prob9 parts
+        mcount x = filter (\x -> prob9 x == maximum vals) parts
+		
+        m = max parts
+-}
 ------------------------------------------------------------
 -- PROBLEM #11
 --
 -- Найти сумму элементов дерева
+
 prob11 :: Num a => Tree a -> a
-prob11 = error "Implement me!"
+prob11 = error "I"
 
 ------------------------------------------------------------
 -- PROBLEM #12

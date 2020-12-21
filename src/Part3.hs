@@ -5,7 +5,10 @@ module Part3 where
 --
 -- Проверить, является ли число N простым (1 <= N <= 10^9)
 prob18 :: Integer -> Bool
-prob18 = error "Implement me!"
+prob18 1 = False
+prob18 n = all check [2..n `div` 2]
+  where
+    check x = n `mod` x /= 0
 
 ------------------------------------------------------------
 -- PROBLEM #19
@@ -23,7 +26,7 @@ prob19 = error "Implement me!"
 -- Совершенное число равно сумме своих делителей (меньших
 -- самого числа)
 prob20 :: Integer -> Bool
-prob20 = error "Implement me!"
+prob20 n = sum (filter ((== 0) . (mod n)) [1..(n-1)]) == n
 
 ------------------------------------------------------------
 -- PROBLEM #21
@@ -31,7 +34,7 @@ prob20 = error "Implement me!"
 -- Вернуть список всех делителей числа N (1<=N<=10^10) в
 -- порядке возрастания
 prob21 :: Integer -> [Integer]
-prob21 = error "Implement me!"
+prob21 n = filter ((== 0) . (mod n)) [1..n]
 
 ------------------------------------------------------------
 -- PROBLEM #22
@@ -39,7 +42,9 @@ prob21 = error "Implement me!"
 -- Подсчитать произведение количеств букв i в словах из
 -- заданной строки (списка символов)
 prob22 :: String -> Integer
-prob22 = error "Implement me!"
+prob22 = error "I"
+	
+
 
 ------------------------------------------------------------
 -- PROBLEM #23
@@ -59,7 +64,7 @@ prob23 = error "Implement me!"
 -- представить как сумму чисел от 1 до какого-то K
 -- (1 <= N <= 10^10)
 prob24 :: Integer -> Bool
-prob24 = error "Implement me!"
+prob24 n = error "Implement me!"
 
 ------------------------------------------------------------
 -- PROBLEM #25
