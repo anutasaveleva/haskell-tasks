@@ -43,9 +43,6 @@ prob21 n = filter ((== 0) . (mod n)) [1..n]
 -- заданной строки (списка символов)
 prob22 :: String -> Integer
 prob22 = error "I"
-	
-
-
 ------------------------------------------------------------
 -- PROBLEM #23
 --
@@ -81,7 +78,10 @@ prob25 = error "Implement me!"
 -- сумма делителей одного (без учёта самого числа) равна
 -- другому, и наоборот
 prob26 :: Integer -> Integer -> Bool
-prob26 = error "Implement me!"
+prob26 x y = summa x == y
+  where
+    summa :: Integer -> Integer
+    summa n = sum (filter ((== 0) . (mod n)) [1..(n-1)]) 
 
 ------------------------------------------------------------
 -- PROBLEM #27
