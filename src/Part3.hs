@@ -6,6 +6,7 @@ module Part3 where
 -- Проверить, является ли число N простым (1 <= N <= 10^9)
 prob18 :: Integer -> Bool
 prob18 1 = False
+prob18 2 = True
 prob18 n = all check [2..ceiling . sqrt $ fromIntegral n]
   where
     check x = n `mod` x /= 0
@@ -17,7 +18,7 @@ prob18 n = all check [2..ceiling . sqrt $ fromIntegral n]
 -- разложении числа N (1 <= N <= 10^9). Простые делители
 -- должны быть расположены по возрастанию
 prob19 :: Integer -> [(Integer, Int)]
-prob19 = error "Implement me!"
+prob19 n = error "I"
 
 ------------------------------------------------------------
 -- PROBLEM #20
