@@ -77,9 +77,8 @@ prob4 1 = 1
 prob4 (-1) = 0
 prob4 n
     | n == (-1) = 0
-	| n < 0 = prob4(-n - 2) * (if even n then 1 else -1)
+    | n < 0 = prob4(-n - 2) * (if even n then 1 else -1)
     | otherwise = f1 n 0 1
-	
 f1 :: Integer -> Integer -> Integer -> Integer
 f1 0 x y = y
 f1 n x y = f1 (n-1) y (x+y)
