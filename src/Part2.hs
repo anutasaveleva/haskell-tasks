@@ -2,6 +2,7 @@ module Part2 where
 
 import Part2.Types
 
+
 ------------------------------------------------------------
 -- PROBLEM #6
 --
@@ -59,24 +60,24 @@ prob9 (Blue x) = x
 -- Написать функцию, которая возвращает компонент Color, у
 -- которого наибольшее значение (если такой единственный)
 prob10 :: Color -> Maybe ColorPart
-prob10 = error "Implement me!"
-
-{- c = if length mcount == 1 then Just m else Nothing
+prob10 c
+    |length mcount == 1 = Just m
+    |otherwise = Nothing
     where
         parts = [Red (red c), Green (green c), Blue (blue c)]
-        vals = map prob9 parts
-        mcount x = filter (\x -> prob9 x == maximum vals) parts
-		
-        m = max parts
--}
+        m = maximum parts
+        mcount = filter (\x -> compare x m == EQ) parts
+instance Ord ColorPart where
+  compare x y = compare (prob9 x) (prob9 y)
 ------------------------------------------------------------
 -- PROBLEM #11
 --
 -- Найти сумму элементов дерева
 
 prob11 :: Num a => Tree a -> a
-prob11 = error "I"
-
+prob11 tree = root tree + sumof (left tree) + sumof (right tree)
+  where 
+    sumof t = maybe 0 prob11 t
 ------------------------------------------------------------
 -- PROBLEM #12
 --
@@ -86,7 +87,7 @@ prob11 = error "I"
 -- а все элементы правого поддерева -- не меньше элемента
 -- в узле)
 prob12 :: Ord a => Tree a -> Bool
-prob12 = error "Implement me!"
+prob12 = error "Implement"
 
 ------------------------------------------------------------
 -- PROBLEM #13
