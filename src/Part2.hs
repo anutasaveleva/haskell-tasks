@@ -87,8 +87,16 @@ prob11 tree = root tree + sumof (left tree) + sumof (right tree)
 -- а все элементы правого поддерева -- не меньше элемента
 -- в узле)
 prob12 :: Ord a => Tree a -> Bool
-prob12 = error "Implement"
-
+prob12 (Tree Nothing _ Nothing) = True
+prob12 (Tree (Just l) r Nothing) = all (<r) (summa l) && prob12 l
+prob12 (Tree Nothing r (Just right)) = all (>= r) (summa right) && prob12 right
+prob12 (Tree (Just l) r (Just right)) = 
+    prob12 (Tree (Just l) r Nothing) && prob12 (Tree Nothing r (Just right))
+summa :: Tree a -> [a]
+summa (Tree Nothing r Nothing) = [r]
+summa (Tree (Just l) r Nothing) = summa l ++ [r]
+summa (Tree Nothing r (Just right)) = r : summa right 
+summa (Tree (Just l) r (Just right)) = summa l ++ r : summa right
 ------------------------------------------------------------
 -- PROBLEM #13
 --
@@ -96,8 +104,14 @@ prob12 = error "Implement"
 -- поддерево, в корне которого находится значение, если оно
 -- есть в дереве поиска; если его нет - вернуть Nothing
 prob13 :: Ord a => a -> Tree a -> Maybe (Tree a)
-prob13 = error "Implement me!"
-
+prob13 n tree = p13 n (Just tree)
+  where
+    p13 :: Ord a => a -> Maybe (Tree a) -> Maybe (Tree a)
+    p13 _ Nothing = Nothing
+    p13 n (Just (Tree l root r))
+      | n == root = (Just (Tree l root r))
+      | n < root = p13 n l
+      | n > root = p13 n r  
 ------------------------------------------------------------
 -- PROBLEM #14
 --
@@ -112,7 +126,7 @@ prob14 = error "Implement me!"
 -- Выполнить вращение дерева влево относительно корня
 -- (https://en.wikipedia.org/wiki/Tree_rotation)
 prob15 :: Tree a -> Tree a
-prob15 = error "Implement me!"
+prob15 (Tree l ro (Just (Tree ri1 ri2 ri3))) = Tree (Just $ Tree l ro ri1) ri2 ri3
 
 ------------------------------------------------------------
 -- PROBLEM #16
