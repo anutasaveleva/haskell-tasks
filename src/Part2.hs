@@ -134,8 +134,7 @@ prob15 (Tree l ro (Just (Tree ri1 ri2 ri3))) = Tree (Just $ Tree l ro ri1) ri2 r
 -- Выполнить вращение дерева вправо относительно корня
 -- (https://en.wikipedia.org/wiki/Tree_rotation)
 prob16 :: Tree a -> Tree a
-prob16 = error "Implement me!"
-
+prob16 (Tree (Just (Tree a b c)) d e) = Tree a b (Just (Tree c d e))
 ------------------------------------------------------------
 -- PROBLEM #17
 --
