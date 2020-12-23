@@ -1,6 +1,6 @@
 module Part3 where
 
-import Data.List (group)
+import Data.List (group, nub, sort)
 
 ------------------------------------------------------------
 -- PROBLEM #18
@@ -38,14 +38,21 @@ prob19 n = map (\divs -> (head divs, length divs)) (group (getDivs n))
 -- самого числа)
 prob20 :: Integer -> Bool
 prob20 n = error "I"
+
 ------------------------------------------------------------
 -- PROBLEM #21
 --
 -- Вернуть список всех делителей числа N (1<=N<=10^10) в
 -- порядке возрастания
 prob21 :: Integer -> [Integer]
-prob21 1 = [1]
-prob21 n = filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n] ++ [n]
+prob21 n = (sort . allDivsButN) n ++ [n]
+
+allDivsButN :: Integral a => a -> [a]
+allDivsButN n = (l++) $ nub
+  $ concat [[x, n `div` x] | x <- [2..floor . sqrt $ fromIntegral n],
+  n `mod` x == 0]
+    where
+      l = if n == 1 then [] else [1]
 ------------------------------------------------------------
 -- PROBLEM #22
 --
