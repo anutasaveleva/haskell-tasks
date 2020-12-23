@@ -126,15 +126,22 @@ prob14 = error "Implement me!"
 -- Выполнить вращение дерева влево относительно корня
 -- (https://en.wikipedia.org/wiki/Tree_rotation)
 prob15 :: Tree a -> Tree a
-prob15 (Tree l ro (Just (Tree ri1 ri2 ri3))) = Tree (Just $ Tree l ro ri1) ri2 ri3
-
+prob15 tree = maybe tree lr (right tree)
+  where
+    lr subtree = subtree {left = Just oldTree}
+      where 
+        oldTree = tree {right = left subtree}
 ------------------------------------------------------------
 -- PROBLEM #16
 --
 -- Выполнить вращение дерева вправо относительно корня
 -- (https://en.wikipedia.org/wiki/Tree_rotation)
 prob16 :: Tree a -> Tree a
-prob16 (Tree (Just (Tree a b c)) d e) = Tree a b (Just (Tree c d e))
+prob16 tree = maybe tree rr (left tree)
+  where
+    rr subtree = subtree {right = Just oldTree}
+      where 
+        oldTree = tree {left = right subtree}
 ------------------------------------------------------------
 -- PROBLEM #17
 --

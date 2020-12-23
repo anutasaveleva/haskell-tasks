@@ -37,9 +37,7 @@ prob19 n = map (\divs -> (head divs, length divs)) (group (getDivs n))
 -- Совершенное число равно сумме своих делителей (меньших
 -- самого числа)
 prob20 :: Integer -> Bool
-prob20 1 = False
-prob20 n = sum (filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n]) == n
-
+prob20 n = error "I"
 ------------------------------------------------------------
 -- PROBLEM #21
 --
@@ -48,7 +46,6 @@ prob20 n = sum (filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n]) 
 prob21 :: Integer -> [Integer]
 prob21 1 = [1]
 prob21 n = filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n] ++ [n]
-
 ------------------------------------------------------------
 -- PROBLEM #22
 --
@@ -129,7 +126,12 @@ prob28 = error "Implement me!"
 -- Найти наибольшее число-палиндром, которое является
 -- произведением двух K-значных (1 <= K <= 3)
 prob29 :: Int -> Int
-prob29 k = error "Implement me!"
+prob29 k = maximum [x * y| 
+    x <- [minNumber..maxNumber], y <-[minNumber..maxNumber],
+    (prob25 . toInteger) (x*y)]
+      where
+        minNumber = 10 ^ (k - 1)
+        maxNumber = 10 ^ k - 1
 
 ------------------------------------------------------------
 -- PROBLEM #30
@@ -145,7 +147,7 @@ prob30 = error "Implement me!"
 -- Найти сумму всех пар различных дружественных чисел,
 -- меньших заданного N (1 <= N <= 10000)
 prob31 :: Int -> Int
-prob31 = error "Implement me!"
+prob31 n = sum [(x + y) | x <- [1..n], y <- [x+1..n], prob26 (toInteger x) (toInteger y)]
 
 ------------------------------------------------------------
 -- PROBLEM #32
