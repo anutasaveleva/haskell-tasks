@@ -37,7 +37,7 @@ prob19 n = map (\divs -> (head divs, length divs)) (group (getDivs n))
 -- Совершенное число равно сумме своих делителей (меньших
 -- самого числа)
 prob20 :: Integer -> Bool
-prob20 n = error "I"
+prob20 n = sum (allDivsButN n) == n
 
 ------------------------------------------------------------
 -- PROBLEM #21
