@@ -55,7 +55,11 @@ prob21 n = filter ((== 0) . (mod n)) [1..ceiling . sqrt $ fromIntegral n] ++ [n]
 -- Подсчитать произведение количеств букв i в словах из
 -- заданной строки (списка символов)
 prob22 :: String -> Integer
-prob22 = error "I"
+prob22 [] = 0
+prob22 sentence = product $ (map letNumber) (words sentence)
+    where
+      letNumber :: String -> Integer
+      letNumber w = toInteger $ length (filter(=='i')w)
 ------------------------------------------------------------
 -- PROBLEM #23
 --
@@ -74,7 +78,13 @@ prob23 = error "Implement me!"
 -- представить как сумму чисел от 1 до какого-то K
 -- (1 <= N <= 10^10)
 prob24 :: Integer -> Bool
-prob24 n = error "Implement me!"
+prob24 n = isTriangle 1 0
+  where
+    isTriangle :: Integer -> Integer -> Bool
+    isTriangle curN curSum
+      | curSum == n = True
+      | curSum > n = False
+      | otherwise = isTriangle (succ curN) (curSum + curN)
 
 ------------------------------------------------------------
 -- PROBLEM #25
