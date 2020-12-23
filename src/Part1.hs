@@ -6,6 +6,9 @@ module Part1
   , prob5
   ) where
 
+import Part3 (getDivs)
+  
+  
 ------------------------------------------------------------
 -- PROBLEM #1
 --
@@ -92,16 +95,8 @@ f1 n x y = f1 (n-1) y (x+y)
 --
 -- Числа n и k положительны и не превосходят 10^8.
 -- Число 1 не считается простым числом
+
 prob5 :: Integer -> Integer -> Bool
 prob5 1 k = False
-prob5 n k = all (< k) (primes n)
-  where
-    primes :: Integer -> [Integer]
-    primes = divs 2 
-
-    divs :: Integer -> Integer -> [Integer]
-    divs _ 1 = []
-    divs divisor n
-      | divisor * divisor > n = [n]
-      | n `mod` divisor == 0 = divisor : divs divisor (n `div` divisor)
-      | otherwise = divs (divisor + 1) n
+prob5 n k = all (< k) (getDivs n)
+  
