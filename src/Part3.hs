@@ -1,5 +1,7 @@
 module Part3 where
 
+import Data.List (group)
+
 ------------------------------------------------------------
 -- PROBLEM #18
 --
@@ -7,10 +9,17 @@ module Part3 where
 prob18 :: Integer -> Bool
 prob18 1 = False
 prob18 2 = True
-prob18 n = all check [2..ceiling . sqrt $ fromIntegral n]
-  where
-    check x = n `mod` x /= 0
+prob18 n = getDivs n == [n]
 
+getDivs :: Integer -> [Integer]
+getDivs  = getCurrentDivs 2
+  where
+    getCurrentDivs :: Integer -> Integer -> [Integer]
+    getCurrentDivs _ 1 = []
+    getCurrentDivs divisor n 
+      |divisor * divisor > n = [n]
+      |n `mod` divisor == 0 = divisor : getCurrentDivs divisor (n `div` divisor)
+      |otherwise = getCurrentDivs (succ divisor) n
 ------------------------------------------------------------
 -- PROBLEM #19
 --
@@ -18,7 +27,8 @@ prob18 n = all check [2..ceiling . sqrt $ fromIntegral n]
 -- разложении числа N (1 <= N <= 10^9). Простые делители
 -- должны быть расположены по возрастанию
 prob19 :: Integer -> [(Integer, Int)]
-prob19 n = error "I"
+prob19 n = map (\divs -> (head divs, length divs)) (group (getDivs n))
+ 
 
 ------------------------------------------------------------
 -- PROBLEM #20
