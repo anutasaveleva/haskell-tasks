@@ -116,7 +116,7 @@ prob26 x y = summa x == y
 -- Найти в списке два числа, сумма которых равна заданному.
 -- Длина списка не превосходит 500
 prob27 :: Int -> [Int] -> Maybe (Int, Int)
-prob27 = error "Implement me!"
+prob27 n  = error "i" 
 
 ------------------------------------------------------------
 -- PROBLEM #28
@@ -164,4 +164,9 @@ prob31 n = sum [(x + y) | x <- [1..n], y <- [x+1..n], prob26 (toInteger x) (toIn
 -- указанного достоинства
 -- Сумма не превосходит 100
 prob32 :: [Int] -> Int -> [[Int]]
-prob32 = error "Implement me!"
+prob32 coins summa = if summa < minimum coins then []
+  else
+    [coin : next 
+      | coin <- reverse coins, 
+        next <- []:prob32 (filter (<= coin) coins) (summa - coin),
+        sum (coin:next)== summa]
