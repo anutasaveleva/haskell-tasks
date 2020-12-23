@@ -94,10 +94,14 @@ f1 n x y = f1 (n-1) y (x+y)
 -- Число 1 не считается простым числом
 prob5 :: Integer -> Integer -> Bool
 prob5 1 k = False
-prob5 n k = all (< k) (filter prime $ getdivs n)
+prob5 n k = all (< k) (primes n)
   where
-    prime :: Integer -> Bool
-    prime n = getdivs n == [1, n]
+    primes :: Integer -> [Integer]
+    primes = divs 2 
 
-    getdivs :: Integer -> [Integer]
-    getdivs x = filter ((== 0) . (mod x)) [1..x `div` 2] ++ [x]
+    divs :: Integer -> Integer -> [Integer]
+    divs _ 1 = []
+    divs divisor n
+      | divisor * divisor > n = [n]
+      | n `mod` divisor == 0 = divisor : divs divisor (n `div` divisor)
+      | otherwise = divs (divisor + 1) n
