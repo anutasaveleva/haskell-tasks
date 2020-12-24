@@ -6,7 +6,6 @@ module Part1
   , prob5
   ) where
 
-import Part3 (getDivs)
   
   
 ------------------------------------------------------------
@@ -97,6 +96,15 @@ f1 n x y = f1 (n-1) y (x+y)
 -- Число 1 не считается простым числом
 
 prob5 :: Integer -> Integer -> Bool
-prob5 1 k = False
 prob5 n k = all (< k) (getDivs n)
+
+getDivs :: Integer -> [Integer]
+getDivs  = getCurrentDivs 2
+  where
+    getCurrentDivs :: Integer -> Integer -> [Integer]
+    getCurrentDivs _ 1 = []
+    getCurrentDivs divisor n 
+      |divisor * divisor > n = [n]
+      |n `mod` divisor == 0 = divisor : getCurrentDivs divisor (n `div` divisor)
+      |otherwise = getCurrentDivs (divisor + 1) n
   
